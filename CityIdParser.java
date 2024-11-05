@@ -9,9 +9,9 @@ public class CityIdParser {
 
     public ArrayList<Integer> getIds(){
         ArrayList<Integer> ids = new ArrayList<>();
-        for (int i=0; i<this.m_jsonArray.length(); ++i){
-            Integer id = (Integer) this.m_jsonArray.getJSONObject(i).get("id");
-            System.out.println(id);
+        JSONArray jsonArray = getM_jsonArray();
+        for (int i=0; i<jsonArray.length(); ++i){
+            Integer id = (Integer) jsonArray.getJSONObject(i).get("id");
             ids.add(id);
         }
         return ids;
