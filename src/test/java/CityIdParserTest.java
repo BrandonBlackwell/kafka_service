@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CityIdParserTest {
-    JSONArray json_array = new JSONArray("[{id: 1, name: a}, {id: 2, name: b}, {id: 3, name: c}]");
+    JSONArray json_array = new JSONArray("[{id: 1, name: a, country: US}, {id: 2, name: b, country: US}, {id: 3, name: c, country: US}]");
     CityIdParser cityIdParser = new CityIdParser(json_array);
 
     @org.junit.jupiter.api.Test

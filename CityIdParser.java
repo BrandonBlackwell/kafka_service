@@ -11,8 +11,12 @@ public class CityIdParser {
         ArrayList<Integer> ids = new ArrayList<>();
         JSONArray jsonArray = getM_jsonArray();
         for (int i=0; i<jsonArray.length(); ++i){
-            Integer id = (Integer) jsonArray.getJSONObject(i).get("id");
-            ids.add(id);
+            String country = (String) jsonArray.getJSONObject(i).get("country");
+            if (country.equals("US")){
+                Integer id = (Integer) jsonArray.getJSONObject(i).getInt("id");
+                ids.add(id);
+            }
+
         }
         return ids;
     }

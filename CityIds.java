@@ -1,5 +1,8 @@
 import org.json.JSONArray;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 /*TODO:
    1. Read cityIds file into json array.
@@ -8,10 +11,18 @@ import java.util.ArrayList;
 */
 public class CityIds {
     public static void main(String[] args) {
-        JSONArray jsonArray = new JSONArray("[{id: 1, name: brandon},{id: 2, name: britney}]");
+//        Read json data from file into string
+        String content;
+        try {
+            content = Files.readString(Path.of("city.list.json"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        Store in JSONArray and get US city IDs
+        JSONArray jsonArray = new JSONArray(content);
         CityIdParser cityIdParser = new CityIdParser(jsonArray);
         ArrayList<Integer> ids = cityIdParser.getIds();
-        for (int id: ids) {
+        for (int id : ids) {
             System.out.println(id);
         }
     }
