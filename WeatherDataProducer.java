@@ -3,11 +3,23 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WeatherDataProducer {
     public static void main(String[] Args) {
+//        Read in US city ids
+        Scanner scanner = new Scanner("cityIds.txt");
+        ArrayList<String> city_ids = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String id = scanner.nextLine();
+            city_ids.add(id);
+        }
+        scanner.close();
+
+//        Make API requests
+//        for (String city_id: city_ids){}
         final String API_KEY = System.getenv("API_KEY");
-        int city_id = 8260172;
         String uri = String.format("https://api.openweathermap.org/data/2.5/weather?id=%d&appid=%s&lang=en&units=imperial", city_id, API_KEY);
         /*TODO:
            1. Grab all US city codes.
@@ -29,7 +41,11 @@ public class WeatherDataProducer {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+/*
+ TODO:
+    1. Send through weather data processor class
+    2. Send to Kafka Broker
+*/
             System.out.println(response.body());
             System.out.println(response.body().getClass());
         } catch (Exception e) {
