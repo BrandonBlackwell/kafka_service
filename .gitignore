@@ -3,3 +3,4 @@ target
 docker-compose.yml
 city.list.json
 WeatherDataProducer.class
+playground.java
